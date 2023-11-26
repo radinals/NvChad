@@ -9,6 +9,12 @@ g.toggle_theme_icon = "   "
 g.transparency = config.ui.transparency
 
 -------------------------------------- options ------------------------------------------
+
+opt.scrolloff = 999
+opt.sidescroll = 0
+
+opt.smartcase = true
+
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 
@@ -16,11 +22,14 @@ opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
 -- Indenting
-opt.expandtab = true
-opt.shiftwidth = 2
+-- opt.expandtab = true
+-- opt.shiftwidth = 2
 opt.smartindent = true
-opt.tabstop = 2
-opt.softtabstop = 2
+-- opt.tabstop = 2
+-- opt.softtabstop = 2
+
+-- disable line wrap
+opt.wrap = false
 
 opt.fillchars = { eob = " " }
 opt.ignorecase = true
@@ -28,7 +37,7 @@ opt.smartcase = true
 opt.mouse = "a"
 
 -- Numbers
-opt.number = true
+opt.relativenumber = true
 opt.numberwidth = 2
 opt.ruler = false
 
@@ -41,6 +50,7 @@ opt.splitright = true
 opt.termguicolors = true
 opt.timeoutlen = 400
 opt.undofile = true
+opt.swapfile = false
 
 -- interval for writing swap file to disk, also used by gitsigns
 opt.updatetime = 250
@@ -106,6 +116,10 @@ autocmd("BufWritePost", {
     -- vim.cmd("redraw!")
   end,
 })
+
+autocmd("BufEnter",
+  { command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o" }
+)
 
 -------------------------------------- commands ------------------------------------------
 local new_cmd = vim.api.nvim_create_user_command

@@ -105,6 +105,7 @@ local options = {
     }),
   },
   sources = {
+    { name = "orgmode" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },

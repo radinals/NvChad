@@ -12,8 +12,8 @@ M.ui = {
   changed_themes = {},
   theme_toggle = { "onedark", "one_light" },
   theme = "onedark", -- default theme
-  transparency = false,
-  lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
+  transparency = true,
+  lsp_semantic_tokens = true, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 
   -- https://github.com/NvChad/base46/tree/v2.0/lua/base46/extended_integrations
   extended_integrations = {}, -- these aren't compiled by default, ex: "alpha", "notify"
@@ -48,18 +48,19 @@ M.ui = {
 
   -- nvdash (dashboard)
   nvdash = {
-    load_on_startup = false,
+    load_on_startup = true,
 
     header = {
-      "           ▄ ▄                   ",
-      "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
-      "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
-      "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
-      "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ",
-      "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄",
-      "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
-      "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
-      "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
+      " ▄▄▄▄▄▄▄▄▄    ▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄ ",
+      " ▄▄▄      ▄▄ ▄▄        ▄▄           ",
+      " ▄▄▄      ▄▄ ▄▄        ▄▄           ",
+      " ▄▄▄      ▄▄ ▄▄        ▄▄           ",
+      " ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄  ",
+      " ▄▄▄     ▄▄▄  ▄▄▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄▄ ",
+      " ▄▄▄      ▄▄        ▄▄▄         ▄▄▄ ",
+      " ▄▄▄      ▄▄         ▄▄          ▄▄ ",
+      " ▄▄▄      ▄▄ ▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄  ",
+
     },
 
     buttons = {
@@ -67,7 +68,7 @@ M.ui = {
       { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
       { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
       { "  Bookmarks", "Spc m a", "Telescope marks" },
-      { "  Themes", "Spc t h", "Telescope themes" },
+      { "  Themes", "Spc c r", "Telescope themes" },
       { "  Mappings", "Spc c h", "NvCheatsheet" },
     },
   },

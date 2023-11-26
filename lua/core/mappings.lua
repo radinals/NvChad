@@ -22,6 +22,10 @@ M.general = {
     ["<C-l>"] = { "<C-w>l", "Window right" },
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
+    ["<C-Left>"] = { "<cmd>vertical resize +3<CR>", "Grow window to the left" },
+    ["<C-Right>"] = { "<cmd>vertical resize -3<CR>", "Grow window to the right" },
+    ["<C-Up>"] = { "<cmd>resize +3<CR>", "Grow window upwards" },
+    ["<C-Down>"] = { "<cmd>resize -3<CR>", "Grow window downwards" },
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
@@ -52,10 +56,20 @@ M.general = {
       end,
       "LSP formatting",
     },
+
+    ["<leader>wh"] = { "<cmd> split  <CR>", "Horizontal Split" },
+    ["<leader>wv"] = { "<cmd> vsplit <CR>", "Vertical Split" },
+    ["<leader>wz"] = { "<cmd> vsplit <CR>", "Vertical Split" },
+    ["<leader>wc"] = { "<cmd> close  <CR>", "Close Buffer" },
+
+    ["<leader>th"] = { "<cmd> tabp     <CR>", "goto previous tab" },
+    ["<leader>tl"] = { "<cmd> tabn     <CR>", "goto next tab" },
+    ["<leader>tH"] = { "<cmd> -tabmove <CR>", "move tab to the left" },
+    ["<leader>tL"] = { "<cmd> +tabmove <CR>", "move tab to the right" },
   },
 
   t = {
-    ["<C-x>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
+    ["<Esc>"] = { vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), "Escape terminal mode" },
   },
 
   v = {
@@ -117,7 +131,7 @@ M.comment = {
   },
 
   v = {
-    ["<leader>/"] = {
+    ["<leader>gg"] = {
       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "Toggle comment",
     },
@@ -286,7 +300,7 @@ M.telescope = {
     ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
 
     -- theme switcher
-    ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
+    ["<leader>cr"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
   },
@@ -355,6 +369,13 @@ M.nvterm = {
         require("nvterm.terminal").new "vertical"
       end,
       "New vertical term",
+    },
+
+    ["<space>ot"] = {
+      function()
+        require("nvterm.terminal").toggle "float"
+      end,
+      "Toggle floating term",
     },
   },
 }
