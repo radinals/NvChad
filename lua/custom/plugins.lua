@@ -201,8 +201,47 @@ local plugins = {
         workspace_text      = "Working on %s",
         -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
         line_number_text    = "Line %s out of %s",
-}
+      }
     end,
+  },
+
+  {
+    "susensio/magic-bang.nvim",
+    config= function()
+      require("magic-bang").setup({
+        {
+          bins = {
+            awk = "awk",
+            hs = "runhaskell",
+            jl = "julia",
+            lua = "lua",
+            m = "octave",
+            mak = "make",
+            php = "php",
+            pl = "perl",
+            py = "python3",
+            r = "Rscript",
+            rb = "ruby",
+            scala = "scala",
+            sh = "bash",
+            tcl = "tclsh",
+            tk = "wish",
+          },
+          automatic = true,         -- insert shebang on new file when in $PATH
+          command = true,           -- define Bang user command
+          executable = true,        -- make file executable on exit
+          default = "/bin/bash"     -- default shebang for `:Bang` without args
+        }
+      })
+    end,
+    event = "BufNewFile",
+    cmd = "Bang",
+  },
+
+  {
+   "sotte/presenting.vim",
+    event = "VeryLazy",
+    cmd = "StartPresenting",
   },
 
   -- To make a plugin not be loaded
