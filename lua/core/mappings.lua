@@ -373,9 +373,9 @@ M.nvterm = {
 
     ["<space>ot"] = {
       function()
-        require("nvterm.terminal").toggle "float"
+        require("nvterm.terminal").toggle "horizontal"
       end,
-      "Toggle floating term",
+      "Toggle horizontal term",
     },
   },
 }
