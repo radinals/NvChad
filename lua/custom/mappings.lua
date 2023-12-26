@@ -50,10 +50,10 @@ M.nvim_move = {
     ["<leader>wb"] = { "<cmd>MoveWord(-1)<CR>", "Move Word to the left", silent=true },
   },
   v = {
-    ["<A-j>"] = { "<cmd>MoveLine(1)<CR>", "Move Line Down", silent=true },
-    ["<A-k>"] = { "<cmd>MoveLine(-1)<CR>", "Move Line Up", silent=true },
-    ["<A-h>"] = { "<cmd>MoveHChar(-1)<CR>", "Move Line Left", silent=true },
-    ["<A-l>"] = { "<cmd>MoveHChar(1)<CR>", "Move Line Right", silent=true },
+    ["<A-j>"] = { ":'<'>MoveBlock(1)<CR>", "Move Line Down", silent=false },
+    ["<A-k>"] = { ":'<'>MoveBlock(-1)<CR>", "Move Line Up", silent=false },
+    ["<A-h>"] = { ":'<'>MoveHBlock(-1)<CR>", "Move Line Left", silent=true },
+    ["<A-l>"] = { ":'<'>MoveHBlock(1)<CR>", "Move Line Right", silent=true },
   }
 }
 
