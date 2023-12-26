@@ -39,6 +39,24 @@ M.SymbolsUsage = {
   },
 }
 
+M.nvim_move = {
+  plugin = true,
+  n = {
+    ["<A-j>"] = { "<cmd>MoveLine(1)<CR>", "Move Line Down", silent=true },
+    ["<A-k>"] = { "<cmd>MoveLine(-1)<CR>", "Move Line Up", silent=true },
+    ["<A-h>"] = { "<cmd>MoveHChar(-1)<CR>", "Move Line Left", silent=true },
+    ["<A-l>"] = { "<cmd>MoveHChar(1)<CR>", "Move Line Right", silent=true },
+    ["<leader>wf"] = { "<cmd>MoveWord(1)<CR>", "Move Word to the right", silent=true },
+    ["<leader>wb"] = { "<cmd>MoveWord(-1)<CR>", "Move Word to the left", silent=true },
+  },
+  v = {
+    ["<A-j>"] = { "<cmd>MoveLine(1)<CR>", "Move Line Down", silent=true },
+    ["<A-k>"] = { "<cmd>MoveLine(-1)<CR>", "Move Line Up", silent=true },
+    ["<A-h>"] = { "<cmd>MoveHChar(-1)<CR>", "Move Line Left", silent=true },
+    ["<A-l>"] = { "<cmd>MoveHChar(1)<CR>", "Move Line Right", silent=true },
+  }
+}
+
 M.coderunner = {
   plugin = true,
   n = {

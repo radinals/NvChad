@@ -215,7 +215,15 @@ local plugins = {
         },
       })
     end,
-  }
+  },
+
+  {
+    "fedepujol/move.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("core.utils").load_mappings "nvim_move"
+    end,
+  },
 
 
   -- To make a plugin not be loaded
