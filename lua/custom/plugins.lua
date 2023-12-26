@@ -105,13 +105,11 @@ local plugins = {
   {
     "simrat39/symbols-outline.nvim",
     init = function()
-      require("symbols-outline").setup {
-        position = "left",
-      }
+      require("core.utils").load_mappings "SymbolsOutline"
     end,
     dependencies = "nvim-lspconfig",
     config = function(_)
-      require("core.utils").load_mappings "SymbolsOutline"
+      require "plugins.configs.symbols_outline"
     end,
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
   },
@@ -156,10 +154,8 @@ local plugins = {
     event = "BufReadPre", -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
     config = function(_)
       require("symbol-usage").setup {
-
         vt_position = "end_of_line",
       }
-
       require("core.utils").load_mappings "SymbolsUsage"
     end,
   },
@@ -171,68 +167,17 @@ local plugins = {
 
   {
     "andweeb/presence.nvim",
+    enabled = false,
     event = "VeryLazy",
     config = function()
-      require("presence").setup {
-        -- General options
-        auto_update = true, -- Update activity based on autocmd events (if `false`, map or manually execute `:lua package.loaded.presence:update()`)
-        neovim_image_text = "The Superior Text Editor!", -- Text displayed when hovered over the Neovim image
-        main_image = "neovim", -- Main image display (either "neovim" or "file")
-        client_id = "793271441293967371", -- Use your own Discord application client id (not recommended)
-        log_level = nil, -- Log messages at or above this level (one of the following: "debug", "info", "warn", "error")
-        debounce_timeout = 10, -- Number of seconds to debounce events (or calls to `:lua package.loaded.presence:update(<filename>, true)`)
-        enable_line_number = true, -- Displays the current line number instead of the current project
-        blacklist = {}, -- A list of strings or Lua patterns that disable Rich Presence if the current file name, path, or workspace matches
-        buttons = true, -- Configure Rich Presence button(s), either a boolean to enable/disable, a static table (`{{ label = "<label>", url = "<url>" }, ...}`, or a function(buffer: string, repo_url: string|nil): table)
-        file_assets = {}, -- Custom file asset definitions keyed by file names and extensions (see default config at `lua/presence/file_assets.lua` for reference)
-        show_time = true, -- Show the timer
-
-        -- Format string rendered when an editable file is loaded in the buffer (either string or function(filename: string): string)
-        editing_text        = "Editing some file...",
-        -- Format string rendered when browsing a file explorer (either string or function(file_explorer_name: string): string)
-        file_explorer_text  = "Browsing some directory...",
-        -- Format string rendered when committing changes in git (either string or function(filename: string): string)
-        git_commit_text     = "Committing changes...",
-        -- Format string rendered when managing plugins (either string or function(plugin_manager_name: string): string)
-        plugin_manager_text = "Managing plugins...",
-         -- Format string rendered when a read-only or unmodifiable file is loaded in the buffer (either string or function(filename: string): string)
-        reading_text        = "Reading some file...",
-        -- Format string rendered when in a git repository (either string or function(project_name: string|nil, filename: string): string)
-        workspace_text      = "Working on %s",
-        -- Format string rendered when `enable_line_number` is set to true (either string or function(line_number: number, line_count: number): string)
-        line_number_text    = "Line %s out of %s",
-      }
+      require "plugins.configs.nvim_presence"
     end,
   },
 
   {
     "susensio/magic-bang.nvim",
     config= function()
-      require("magic-bang").setup({
-        {
-          bins = {
-            awk = "awk",
-            hs = "runhaskell",
-            jl = "julia",
-            lua = "lua",
-            m = "octave",
-            mak = "make",
-            php = "php",
-            pl = "perl",
-            py = "python3",
-            r = "Rscript",
-            rb = "ruby",
-            scala = "scala",
-            sh = "bash",
-            tcl = "tclsh",
-            tk = "wish",
-          },
-          automatic = true,         -- insert shebang on new file when in $PATH
-          command = true,           -- define Bang user command
-          executable = true,        -- make file executable on exit
-          default = "/bin/bash"     -- default shebang for `:Bang` without args
-        }
-      })
+      require "plugins.configs.magic_bang"
     end,
     event = "BufNewFile",
     cmd = "Bang",
@@ -243,6 +188,35 @@ local plugins = {
     event = "VeryLazy",
     cmd = "StartPresenting",
   },
+
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy",
+  },
+
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+    event = "VeryLazy",
+    ft = {"c", "cpp", "python", "sh"},
+    config = function()
+      vim.o.foldcolumn = '0' -- '0' is not bad
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
+      require('ufo').setup({
+        preview = {
+          win_config = {
+            border = {'', '─', '', '', '', '─', '', ''},
+            winhighlight = 'Normal:Folded',
+            winblend = 0
+          },
+        },
+      })
+    end,
+  }
+
 
   -- To make a plugin not be loaded
   -- {
