@@ -35,6 +35,10 @@ M.mason = {
     "deno",
     "prettier",
 
+    -- python
+    "jedi-language-server",
+    "autopep8",
+
     -- c/cpp stuff
     "clangd",
     "clang-format",
