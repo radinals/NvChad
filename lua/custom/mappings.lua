@@ -39,6 +39,42 @@ M.SymbolsUsage = {
   },
 }
 
+M.DapAdapter = {
+  plugin = true,
+  n = {
+    ["<leader>db"] = { "<cmd>DapToggleBreakpoint<CR>", "Toggle Dap Breakpoint", silent=true },
+    ["<leader>dc"] = { ":DapContinue<CR>", "Run Dap", silent=true },
+    ["<leader>dr"] = { "cmd>DapRestartFrame<CR>", "Restart Frame", silent=true },
+    ["<leader>dq"] = { "<cmd>DapTerminate<CR>", "Quit Dap", silent=true },
+    ["<leader>dn"] = { "<cmd>DapStepInto<CR>", "Step Into", silent=true },
+    ["<leader>do"] = { "<cmd>DapStepOver<CR>", "Step Over", silent=true },
+    ["<leader>de"] = { "<cmd>DapStepOut<CR>", "Step Out", silent=true },
+  },
+}
+
+M.DapUI = {
+  plugin = true,
+  n = {
+
+    ["<leader>ds"] = {
+    function ()
+      require("dapui").open()
+    end,
+    "Open Dap UI",
+    silent = true,
+    },
+
+    ["<leader>dh"] = {
+    function ()
+      require("dapui").close()
+    end,
+    "Close Dap UI",
+    silent = true,
+    },
+
+   }
+}
+
 M.nvim_move = {
   plugin = true,
   n = {

@@ -144,6 +144,7 @@ local plugins = {
   },
 
   {
+    enabled = false,
     "sakhnik/nvim-gdb",
     event = "VeryLazy",
     ft = {"c", "cpp"},
@@ -224,6 +225,58 @@ local plugins = {
       require("core.utils").load_mappings "nvim_move"
     end,
   },
+
+  {
+    "mfussenegger/nvim-dap",
+    event = "VeryLazy",
+    ft = {"c", "cpp"},
+    init = function()
+      local dap = require("dap")
+      dap.adapters.gdb = {
+        type = "executable",
+        command = "gdb",
+        args = { "-i", "dap" }
+      }
+      dap.configurations.cpp = {
+        {
+          name = "Launch",
+          type = "gdb",
+          request = "launch",
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = "${workspaceFolder}",
+        },
+      }
+      dap.configurations.c = dap.configurations.cpp
+    end,
+    config = function()
+      require("core.utils").load_mappings "DapAdapter"
+    end,
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    ft = {"c", "cpp"},
+    dependencies = "mfussenegger/nvim-dap",
+    init = function()
+      require("dapui").setup()
+    end,
+    config = function()
+      local dap, dapui = require("dap"), require("dapui")
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+      require("core.utils").load_mappings "DapUI"
+    end,
+  }
+
 
 
   -- To make a plugin not be loaded
