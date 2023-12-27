@@ -9,6 +9,7 @@ local plugins = {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- format & linting
+      -- FIXME: null-ls is deprecated
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
